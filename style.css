@@ -17,6 +17,19 @@ body {
   margin: 0;
 }
 
+nav {
+  height: 100px;
+  width: 100%;
+}
+
+input[type="text"] {
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  font-size: 30px;
+  text-align: center;
+}
+
 h1 {
   letter-spacing: 3px;
   color: #efefbb;

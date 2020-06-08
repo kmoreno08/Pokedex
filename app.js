@@ -1,6 +1,7 @@
 const poke_container = document.getElementById("poke_container");
-// Includes Mew
-const pokemons_number = 4;
+// Includes Mew - Max 964
+const pokemons_number = 5;
+const pokemons_max_number = 964;
 // Colors for type
 const colors = {
   fire: "#FDDFDF",
@@ -35,6 +36,7 @@ const getPokemon = async (id) => {
 };
 
 function createPokemonCard(pokemon) {
+  //console.log(pokemon);
   // Add each pokemon to div with class
   const pokemonEl = document.createElement("div");
   pokemonEl.classList.add("pokemon");
