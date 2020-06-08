@@ -1,6 +1,6 @@
 const poke_container = document.getElementById("poke_container");
 // Includes Mew
-const pokemons_number = 151;
+const pokemons_number = 4;
 // Colors for type
 const colors = {
   fire: "#FDDFDF",
@@ -38,17 +38,47 @@ function createPokemonCard(pokemon) {
   // Add each pokemon to div with class
   const pokemonEl = document.createElement("div");
   pokemonEl.classList.add("pokemon");
-
-  // Grab the class
+  // Grabs the type
   const poke_types = pokemon.types.map((type) => type.type.name);
+  /* all 6 base-stats in array:
+      0 = hp
+      1 = attack
+      2 = defense
+      3 = special attack
+      4 = special-defense
+      5 = speed */
+  const poke_base_stats = pokemon.stats.map((stat) => stat.base_stat);
+  // weight
+  const poke_weight = pokemon.weight;
+
+  // base experience
+  const poke_base_exp = pokemon.base_experience;
+  // front image for back of card
+  const front_sprite = pokemon.sprites.front_default;
+  // all pokemon moves on to array
+  const poke_moves = pokemon.moves.map((move) => move.move.name);
+
   // Goes over types and finds the first match
   const type = main_types.find((type) => poke_types.indexOf(type) > -1);
+
   // Capitalize first letter
   const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+
   // Type with correct color
   const color = colors[type];
 
   pokemonEl.style.backgroundColor = color;
+
+  const type2Span = document.getElementsByClassName("type2");
+
+  let spanType1Break = document.querySelector("br");
+  let type2 = "";
+  // display second type
+  if (poke_types[1]) {
+    type2 = poke_types[1];
+  } else {
+    type2 = "n/a";
+  }
 
   const pokeInnerHTML = `
         <div class="img-container">
@@ -62,7 +92,9 @@ function createPokemonCard(pokemon) {
               //Add digits in front
               .padStart(3, "0")}</span>
             <h3 class="name">${name}</h3>
-            <small class="type">Type: <span>${type}</span></small>
+            <small class="type">Type: <span>${type}</span></small></br>
+            <small class="type2">Type: <span>${type2}</span></small></br>
+           
         </div>
     `;
 
@@ -70,5 +102,4 @@ function createPokemonCard(pokemon) {
 
   poke_container.appendChild(pokemonEl);
 }
-
 fetchPokemons();
