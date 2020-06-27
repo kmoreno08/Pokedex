@@ -1,6 +1,5 @@
 const search = document.getElementById("search");
 const matchList = document.getElementById("match-list");
-// const searchCard = document.querySelector(".searchcard");
 let pokeNameArray = [];
 
 const fetchAllPokemons = async (searchText) => {
@@ -45,11 +44,19 @@ function pickPokemon(e) {
   getSpecificPokemon(pokemonChoice);
 }
 
-// Grab specific pokemon
+// Grab specific pokemon - by name
 const getSpecificPokemon = async (name) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
   const res = await fetch(url);
   const pokemon = await res.json();
-  console.log(pokemon.name);
+  clearPokemon();
   createPokemonCard(pokemon);
 };
+
+// Clear pokemon cards
+function clearPokemon() {
+  const pokeCard = pokeContainer.querySelectorAll(".pokemon");
+  for (let i = 0; i < pokeCard.length; i++) {
+    pokeCard[i].remove();
+  }
+}
