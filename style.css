@@ -30,6 +30,22 @@ input[type="text"] {
   text-align: center;
 }
 
+.searchCard {
+  font-size: 32px;
+  color: white;
+  height: 75px;
+  text-align: center;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 2.5px;
+}
+
+.searchCard:hover {
+  cursor: pointer;
+}
+
 h1 {
   letter-spacing: 3px;
   color: #efefbb;
