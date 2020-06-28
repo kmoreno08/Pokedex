@@ -67,7 +67,6 @@ function clearPokemon() {
 function clearSearchBar() {
   const searchCard = document.querySelectorAll(".searchCard");
   const searchBar = document.querySelector("#search");
-  console.log(searchCard);
   for (let i = 0; i < searchCard.length; i++) {
     searchCard[i].remove();
   }

@@ -1,6 +1,6 @@
 const poke_container = document.getElementById("poke_container");
-// Includes Mew - Max 964
-const pokemons_number = 5;
+// Includes Mew 151 - Max 964
+const pokemons_number = 151;
 const pokemons_max_number = 964;
 // Colors for type
 const colors = {
@@ -15,7 +15,7 @@ const colors = {
   bug: "#f8d5a3",
   dragon: "#97b3e6",
   psychic: "#eaeda1",
-  flying: "#F5F5F5",
+  flying: "#313131",
   fighting: "#E6E0D4",
   normal: "#F5F5F5",
 };
@@ -36,12 +36,12 @@ const getPokemon = async (id) => {
 };
 
 function createPokemonCard(pokemon) {
-  //console.log(pokemon);
   // Add each pokemon to div with class
   const pokemonEl = document.createElement("div");
   pokemonEl.classList.add("pokemon");
   // Grabs the type
   const poke_types = pokemon.types.map((type) => type.type.name);
+
   /* all 6 base-stats in array:
       0 = hp
       1 = attack
@@ -67,21 +67,25 @@ function createPokemonCard(pokemon) {
   const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
 
   // Type with correct color
-  const color = colors[type];
-
-  pokemonEl.style.backgroundColor = color;
-
-  const type2Span = document.getElementsByClassName("type2");
-
-  let spanType1Break = document.querySelector("br");
-  let type2 = "";
-  // display second type
-  if (poke_types[1]) {
-    type2 = poke_types[1];
+  let type2;
+  let type1 = poke_types[0];
+  if (!poke_types[1]) {
+    type2 = type1;
   } else {
-    type2 = "n/a";
+    type2 = poke_types[1];
   }
+  const colorBackground1 = colors[type1];
+  const colorBackground2 = colors[type2];
 
+  // Gradient background color by type
+  pokemonEl.style.background =
+    "linear-gradient(61deg, " +
+    colorBackground1 +
+    "  54.3%," +
+    colorBackground2 +
+    " 50%)";
+
+  // Add Html to pokemon card
   const pokeInnerHTML = `
         <div class="img-container">
             <img src="https://pokeres.bastionbot.org/images/pokemon/${
@@ -94,14 +98,15 @@ function createPokemonCard(pokemon) {
               //Add digits in front
               .padStart(3, "0")}</span>
             <h3 class="name">${name}</h3>
-            <small class="type">Type: <span>${type}</span></small></br>
-            <small class="type2">Type: <span>${type2}</span></small></br>
+            <small class="type">Type: ${type1}<span></span></small></br>
+             <small class="type2">Type: ${type2} <span></span></small></br>
            
         </div>
     `;
 
   pokemonEl.innerHTML = pokeInnerHTML;
 
+  // Append pokemon card to container
   poke_container.appendChild(pokemonEl);
 }
 fetchPokemons();
