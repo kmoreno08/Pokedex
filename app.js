@@ -1,6 +1,6 @@
 const poke_container = document.getElementById("poke_container");
 // Includes Mew 151 - Max 964
-const pokemons_number = 151;
+const pokemons_number = 8;
 const pokemons_max_number = 964;
 // Colors for type
 const colors = {
