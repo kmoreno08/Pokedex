@@ -17,7 +17,7 @@ const fetchAllPokemons = async (searchText) => {
   let html = "";
   pokeSearchArray.forEach((pokemon) => {
     html += `
-      <div class="searchCard" onclick="pickPokemon(this)">
+      <div class="searchCard" onmousedown="pickPokemon(this)">
        <h4>${pokemon}</h4>
        </div>`;
   });
@@ -51,12 +51,25 @@ const getSpecificPokemon = async (name) => {
   const pokemon = await res.json();
   clearPokemon();
   createPokemonCard(pokemon);
+  clearSearchBar();
 };
 
 // Clear pokemon cards
 function clearPokemon() {
+  const pokeContainer = document.querySelector("#poke_container");
   const pokeCard = pokeContainer.querySelectorAll(".pokemon");
   for (let i = 0; i < pokeCard.length; i++) {
     pokeCard[i].remove();
   }
+}
+
+// clear search bar value and drop down
+function clearSearchBar() {
+  const searchCard = document.querySelectorAll(".searchCard");
+  const searchBar = document.querySelector("#search");
+  console.log(searchCard);
+  for (let i = 0; i < searchCard.length; i++) {
+    searchCard[i].remove();
+  }
+  search.value = "";
 }
