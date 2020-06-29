@@ -107,6 +107,23 @@ const getFirePokemon = async (id) => {
   }
 };
 
+// Get grass pokemon only
+const fetchGrassPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getGrassPokemon(i);
+  }
+};
+const getGrassPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "grass" || poke_types[1] == "grass") {
+    createPokemonCard(pokemon);
+  }
+};
+
 // Show all pokemon
 btnAll.addEventListener("click", function () {
   clearPokemon();
@@ -117,4 +134,10 @@ btnAll.addEventListener("click", function () {
 btnFire.addEventListener("click", function () {
   clearPokemon();
   fetchFirePokemon();
+});
+
+// show all grass type pokemon
+btnGrass.addEventListener("click", function () {
+  clearPokemon();
+  fetchGrassPokemon();
 });
