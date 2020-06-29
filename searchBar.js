@@ -124,6 +124,23 @@ const getGrassPokemon = async (id) => {
   }
 };
 
+// get electric pokemon only
+const fetchElectricPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getElectricPokemon(i);
+  }
+};
+const getElectricPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "electric" || poke_types[1] == "electric") {
+    createPokemonCard(pokemon);
+  }
+};
+
 // Show all pokemon
 btnAll.addEventListener("click", function () {
   clearPokemon();
@@ -140,4 +157,10 @@ btnFire.addEventListener("click", function () {
 btnGrass.addEventListener("click", function () {
   clearPokemon();
   fetchGrassPokemon();
+});
+
+// show all electric type pokemon
+btnElectric.addEventListener("click", function () {
+  clearPokemon();
+  fetchElectricPokemon();
 });
