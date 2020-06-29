@@ -158,6 +158,40 @@ const getWaterPokemon = async (id) => {
   }
 };
 
+// get ground pokemon only
+const fetchGroundPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getGroundPokemon(i);
+  }
+};
+const getGroundPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "ground" || poke_types[1] == "ground") {
+    createPokemonCard(pokemon);
+  }
+};
+
+// get rock pokemon only
+const fetchRockPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getRockPokemon(i);
+  }
+};
+const getRockPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "rock" || poke_types[1] == "rock") {
+    createPokemonCard(pokemon);
+  }
+};
+
 // Show all pokemon
 btnAll.addEventListener("click", function () {
   clearPokemon();
@@ -186,4 +220,16 @@ btnElectric.addEventListener("click", function () {
 btnWater.addEventListener("click", function () {
   clearPokemon();
   fetchWaterPokemon();
+});
+
+// show all ground type pokemon
+btnGround.addEventListener("click", function () {
+  clearPokemon();
+  fetchGroundPokemon();
+});
+
+// show all rock type pokemon
+btnRock.addEventListener("click", function () {
+  clearPokemon();
+  fetchRockPokemon();
 });
