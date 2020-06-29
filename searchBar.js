@@ -50,8 +50,8 @@ const getSpecificPokemon = async (name) => {
   const res = await fetch(url);
   const pokemon = await res.json();
   clearPokemon();
-  createPokemonCard(pokemon);
   clearSearchBar();
+  createPokemonCard(pokemon);
 };
 
 // Clear pokemon cards
@@ -72,3 +72,49 @@ function clearSearchBar() {
   }
   search.value = "";
 }
+
+// button for types
+const btnAll = document.getElementById("btn-all");
+const btnFire = document.getElementById("btn-fire");
+const btnGrass = document.getElementById("btn-grass");
+const btnElectric = document.getElementById("btn-electric");
+const btnWater = document.getElementById("btn-water");
+const btnGround = document.getElementById("btn-ground");
+const btnRock = document.getElementById("btn-rock");
+const btnFairy = document.getElementById("btn-fairy");
+const btnPoison = document.getElementById("btn-poison");
+const btnBug = document.getElementById("btn-bug");
+const btnDragon = document.getElementById("btn-dragon");
+const btnPsychic = document.getElementById("btn-psychic");
+const btnFlying = document.getElementById("btn-flying");
+const btnFighting = document.getElementById("btn-fighting");
+const btnNormal = document.getElementById("btn-normal");
+
+// Get fire pokemon only
+const fetchFirePokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getFirePokemon(i);
+  }
+};
+const getFirePokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "fire" || poke_types[1] == "fire") {
+    createPokemonCard(pokemon);
+  }
+};
+
+// Show all pokemon
+btnAll.addEventListener("click", function () {
+  clearPokemon();
+  fetchPokemons();
+});
+
+// Show all fire type pokemon
+btnFire.addEventListener("click", function () {
+  clearPokemon();
+  fetchFirePokemon();
+});

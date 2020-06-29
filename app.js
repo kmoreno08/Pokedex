@@ -1,6 +1,6 @@
 const poke_container = document.getElementById("poke_container");
 // Includes Mew 151 - Max 964
-const pokemons_number = 8;
+const pokemons_number = 100;
 const pokemons_max_number = 964;
 // Colors for type
 const colors = {
@@ -34,6 +34,12 @@ const getPokemon = async (id) => {
   const pokemon = await res.json();
   createPokemonCard(pokemon);
 };
+// async function getPokemon(id) {
+//   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+//   const res = await fetch(url);
+//   const pokemon = await res.json();
+//   return pokemon;
+// }
 
 function createPokemonCard(pokemon) {
   // Add each pokemon to div with class

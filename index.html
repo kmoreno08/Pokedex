@@ -7,18 +7,39 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <nav></nav>
-    <div class="form-group">
-      <input
-        type="text"
-        id="search"
-        class="form-control form-control-lg"
-        placeholder="Enter pokemon.."
-      />
-      <div id="match-list"></div>
+    <div class="filter-wrapper">
+      <div class="filter-bar">
+        <h1>PokeDex</h1>
+        <div class="form-group">
+          <input
+            type="text"
+            id="search"
+            class="form-control form-control-lg"
+            placeholder="Enter pokemon.."
+          />
+          <div id="match-list"></div>
+        </div>
+        <div class="poke-counter">Counter</div>
+      </div>
+      <div class="filter-row">
+        <button id="btn-all" class="toggle-button">All</button>
+        <button id="btn-fire" class="toggle-button">Fire</button>
+        <button id="btn-grass" class="toggle-button">Grass</button>
+        <button id="btn-electric" class="toggle-button">Electric</button>
+        <button id="btn-water" class="toggle-button">Water</button>
+        <button id="btn-ground" class="toggle-button">Ground</button>
+        <button id="btn-rock" class="toggle-button">Rock</button>
+        <button id="btn-fairy" class="toggle-button">Fairy</button>
+        <button id="btn-poison" class="toggle-button">Poison</button>
+        <button id="btn-bug" class="toggle-button">Bug</button>
+        <button id="btn-dragon" class="toggle-button">Dragon</button>
+        <button id="btn-psychic" class="toggle-button">Psychic</button>
+        <button id="btn-flying" class="toggle-button">Flying</button>
+        <button id="btn-fighting" class="toggle-button">Fighting</button>
+        <button id="btn-normal" class="toggle-button">Normal</button>
+      </div>
     </div>
 
-    <h1>PokeDex</h1>
     <div id="poke_container" class="poke-container"></div>
     <script src="app.js"></script>
     <script src="searchBar.js"></script>
