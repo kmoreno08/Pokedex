@@ -260,6 +260,38 @@ const getDragonPokemon = async (id) => {
   }
 };
 
+// get psychic pokemon only
+const fetchPsychicPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getPsychicPokemon(i);
+  }
+};
+const getPsychicPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  if (poke_types[0] == "psychic" || poke_types[1] == "psychic") {
+    createPokemonCard(pokemon);
+  }
+};
+
+// get flying pokemon only
+const fetchFlyingPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getFlyingPokemon(i);
+  }
+};
+const getFlyingPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  if (poke_types[0] == "flying" || poke_types[1] == "flying") {
+    createPokemonCard(pokemon);
+  }
+};
+
 // Show all pokemon
 btnAll.addEventListener("click", function () {
   clearPokemon();
@@ -324,4 +356,16 @@ btnBug.addEventListener("click", function () {
 btnDragon.addEventListener("click", function () {
   clearPokemon();
   fetchDragonPokemon();
+});
+
+// show all psychic type pokemon
+btnPsychic.addEventListener("click", function () {
+  clearPokemon();
+  fetchPsychicPokemon();
+});
+
+// show all flying type pokemon
+btnFlying.addEventListener("click", function () {
+  clearPokemon();
+  fetchFlyingPokemon();
 });
