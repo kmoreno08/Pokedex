@@ -226,6 +226,40 @@ const getPoisonPokemon = async (id) => {
   }
 };
 
+// get bug pokemon only
+const fetchBugPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getBugPokemon(i);
+  }
+};
+const getBugPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "bug" || poke_types[1] == "bug") {
+    createPokemonCard(pokemon);
+  }
+};
+
+// get dragon pokemon only
+const fetchDragonPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getDragonPokemon(i);
+  }
+};
+const getDragonPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "dragon" || poke_types[1] == "dragon") {
+    createPokemonCard(pokemon);
+  }
+};
+
 // Show all pokemon
 btnAll.addEventListener("click", function () {
   clearPokemon();
@@ -278,4 +312,16 @@ btnFairy.addEventListener("click", function () {
 btnPoison.addEventListener("click", function () {
   clearPokemon();
   fetchPoisonPokemon();
+});
+
+// show all bug type pokemon
+btnBug.addEventListener("click", function () {
+  clearPokemon();
+  fetchBugPokemon();
+});
+
+// show all dragon type pokemon
+btnDragon.addEventListener("click", function () {
+  clearPokemon();
+  fetchDragonPokemon();
 });
