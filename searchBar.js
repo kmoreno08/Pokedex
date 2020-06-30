@@ -192,6 +192,40 @@ const getRockPokemon = async (id) => {
   }
 };
 
+// get fairy pokemon only
+const fetchFairyPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getFairyPokemon(i);
+  }
+};
+const getFairyPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "fairy" || poke_types[1] == "fairy") {
+    createPokemonCard(pokemon);
+  }
+};
+
+// get poison pokemon only
+const fetchPoisonPokemon = async () => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await getPoisonPokemon(i);
+  }
+};
+const getPoisonPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  console.log(poke_types);
+  if (poke_types[0] == "poison" || poke_types[1] == "poison") {
+    createPokemonCard(pokemon);
+  }
+};
+
 // Show all pokemon
 btnAll.addEventListener("click", function () {
   clearPokemon();
@@ -232,4 +266,16 @@ btnGround.addEventListener("click", function () {
 btnRock.addEventListener("click", function () {
   clearPokemon();
   fetchRockPokemon();
+});
+
+// show all fairy type pokemon
+btnFairy.addEventListener("click", function () {
+  clearPokemon();
+  fetchFairyPokemon();
+});
+
+// show all poison type pokemon
+btnPoison.addEventListener("click", function () {
+  clearPokemon();
+  fetchPoisonPokemon();
 });
