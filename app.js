@@ -18,6 +18,7 @@ const colors = {
   flying: "#313131",
   fighting: "#E6E0D4",
   normal: "#F5F5F5",
+  ice: " #164a91",
 };
 const main_types = Object.keys(colors);
 
