@@ -1,7 +1,9 @@
 const poke_container = document.getElementById("poke_container");
+const poke_counter_div = document.querySelector(".poke-counter");
 // Includes Mew 151 - Max 964
 const pokemons_number = 151;
 const pokemons_max_number = 964;
+let poke_counter = 0;
 // Colors for type
 const colors = {
   fire: "#FDDFDF",
@@ -18,7 +20,7 @@ const colors = {
   flying: "#313131",
   fighting: "#E6E0D4",
   normal: "#F5F5F5",
-  ice: " #164a91",
+  ice: "#456EA7",
 };
 const main_types = Object.keys(colors);
 
@@ -26,6 +28,7 @@ const fetchPokemons = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getPokemon(i);
   }
+  updatePokeCounter();
 };
 
 // Grab pokemon and return in json
@@ -35,14 +38,10 @@ const getPokemon = async (id) => {
   const pokemon = await res.json();
   createPokemonCard(pokemon);
 };
-// async function getPokemon(id) {
-//   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-//   const res = await fetch(url);
-//   const pokemon = await res.json();
-//   return pokemon;
-// }
 
 function createPokemonCard(pokemon) {
+  // Count each pokemon for poke counter
+  poke_counter += 1;
   // Add each pokemon to div with class
   const pokemonEl = document.createElement("div");
   pokemonEl.classList.add("pokemon");
@@ -117,3 +116,9 @@ function createPokemonCard(pokemon) {
   poke_container.appendChild(pokemonEl);
 }
 fetchPokemons();
+
+//Update and display poke counter
+function updatePokeCounter() {
+  poke_counter_div.innerHTML = `<h4>Cards</h4>
+        ${poke_counter} of ${pokemons_number}`;
+}

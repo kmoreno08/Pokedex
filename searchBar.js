@@ -56,6 +56,7 @@ const getSpecificPokemon = async (name) => {
 
 // Clear pokemon cards
 function clearPokemon() {
+  poke_counter = 0;
   const pokeContainer = document.querySelector("#poke_container");
   const pokeCard = pokeContainer.querySelectorAll(".pokemon");
   for (let i = 0; i < pokeCard.length; i++) {
@@ -95,13 +96,13 @@ const fetchFirePokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getFirePokemon(i);
   }
+  updatePokeCounter();
 };
 const getFirePokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "fire" || poke_types[1] == "fire") {
     createPokemonCard(pokemon);
   }
@@ -112,13 +113,13 @@ const fetchGrassPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getGrassPokemon(i);
   }
+  updatePokeCounter();
 };
 const getGrassPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "grass" || poke_types[1] == "grass") {
     createPokemonCard(pokemon);
   }
@@ -129,13 +130,13 @@ const fetchElectricPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getElectricPokemon(i);
   }
+  updatePokeCounter();
 };
 const getElectricPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "electric" || poke_types[1] == "electric") {
     createPokemonCard(pokemon);
   }
@@ -146,13 +147,13 @@ const fetchWaterPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getWaterPokemon(i);
   }
+  updatePokeCounter();
 };
 const getWaterPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "water" || poke_types[1] == "water") {
     createPokemonCard(pokemon);
   }
@@ -163,13 +164,13 @@ const fetchGroundPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getGroundPokemon(i);
   }
+  updatePokeCounter();
 };
 const getGroundPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "ground" || poke_types[1] == "ground") {
     createPokemonCard(pokemon);
   }
@@ -180,13 +181,13 @@ const fetchRockPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getRockPokemon(i);
   }
+  updatePokeCounter();
 };
 const getRockPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "rock" || poke_types[1] == "rock") {
     createPokemonCard(pokemon);
   }
@@ -197,13 +198,13 @@ const fetchFairyPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getFairyPokemon(i);
   }
+  updatePokeCounter();
 };
 const getFairyPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "fairy" || poke_types[1] == "fairy") {
     createPokemonCard(pokemon);
   }
@@ -214,13 +215,13 @@ const fetchPoisonPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getPoisonPokemon(i);
   }
+  updatePokeCounter();
 };
 const getPoisonPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "poison" || poke_types[1] == "poison") {
     createPokemonCard(pokemon);
   }
@@ -231,13 +232,13 @@ const fetchBugPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getBugPokemon(i);
   }
+  updatePokeCounter();
 };
 const getBugPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "bug" || poke_types[1] == "bug") {
     createPokemonCard(pokemon);
   }
@@ -248,13 +249,13 @@ const fetchDragonPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getDragonPokemon(i);
   }
+  updatePokeCounter();
 };
 const getDragonPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   const poke_types = pokemon.types.map((type) => type.type.name);
-  console.log(poke_types);
   if (poke_types[0] == "dragon" || poke_types[1] == "dragon") {
     createPokemonCard(pokemon);
   }
@@ -265,6 +266,7 @@ const fetchPsychicPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getPsychicPokemon(i);
   }
+  updatePokeCounter();
 };
 const getPsychicPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
@@ -281,6 +283,7 @@ const fetchFlyingPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getFlyingPokemon(i);
   }
+  updatePokeCounter();
 };
 const getFlyingPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
@@ -297,6 +300,7 @@ const fetchFightingPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getFightingPokemon(i);
   }
+  updatePokeCounter();
 };
 const getFightingPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
@@ -313,6 +317,7 @@ const fetchNormalPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
     await getNormalPokemon(i);
   }
+  updatePokeCounter();
 };
 const getNormalPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
