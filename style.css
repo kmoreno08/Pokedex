@@ -38,10 +38,6 @@ body {
   align-self: center;
 }
 
-/* .match-list {
-  overflow-y: scroll;
-} */
-
 .poke-counter {
   align-self: center;
   width: 200px;
@@ -72,6 +68,11 @@ body {
   font: 400 13.33px Arial;
 }
 .toggle-button:hover {
+  background: rgb(121, 134, 163);
+  color: #efefbb;
+}
+
+.current-button {
   background: rgb(121, 134, 163);
   color: #efefbb;
 }

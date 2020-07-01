@@ -62,6 +62,7 @@ function clearPokemon() {
   for (let i = 0; i < pokeCard.length; i++) {
     pokeCard[i].remove();
   }
+  removeCurrentBtnClass();
 }
 
 // clear search bar value and drop down
@@ -328,92 +329,121 @@ const getNormalPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
+
+// toggle highlight for current button
+const allBtn = document.querySelectorAll(".toggle-button");
+
+function removeCurrentBtnClass() {
+  for (let i = 0; i < allBtn.length; i++) {
+    allBtn[i].classList.remove("current-button");
+  }
+}
+
+function addCurrentBtnClass(element) {
+  element.classList.add("current-button");
+}
+
 // Show all pokemon
 btnAll.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnAll);
   fetchPokemons();
 });
 
 // Show all fire type pokemon
 btnFire.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnFire);
   fetchFirePokemon();
 });
 
 // show all grass type pokemon
 btnGrass.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnGrass);
   fetchGrassPokemon();
 });
 
 // show all electric type pokemon
 btnElectric.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnElectric);
   fetchElectricPokemon();
 });
 
 // show all water type pokemon
 btnWater.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnWater);
   fetchWaterPokemon();
 });
 
 // show all ground type pokemon
 btnGround.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnGround);
   fetchGroundPokemon();
 });
 
 // show all rock type pokemon
 btnRock.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnRock);
   fetchRockPokemon();
 });
 
 // show all fairy type pokemon
 btnFairy.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnFairy);
   fetchFairyPokemon();
 });
 
 // show all poison type pokemon
 btnPoison.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnPoison);
   fetchPoisonPokemon();
 });
 
 // show all bug type pokemon
 btnBug.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnBug);
   fetchBugPokemon();
 });
 
 // show all dragon type pokemon
 btnDragon.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnDragon);
   fetchDragonPokemon();
 });
 
 // show all psychic type pokemon
 btnPsychic.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnPsychic);
   fetchPsychicPokemon();
 });
 
 // show all flying type pokemon
 btnFlying.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnFlying);
   fetchFlyingPokemon();
 });
 
 // show all flying type pokemon
 btnFighting.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnFighting);
   fetchFightingPokemon();
 });
 
 // show all flying type pokemon
 btnNormal.addEventListener("click", function () {
   clearPokemon();
+  addCurrentBtnClass(btnNormal);
   fetchNormalPokemon();
 });
