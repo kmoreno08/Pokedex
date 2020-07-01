@@ -1,6 +1,7 @@
 const search = document.getElementById("search");
 const matchList = document.getElementById("match-list");
 let pokeNameArray = [];
+// search.addEventListener("input", () => fetchAllPokemons(search.value));
 
 const fetchAllPokemons = async (searchText) => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -36,7 +37,6 @@ const searchPokemon = async (id) => {
 function removeDuplicates(array) {
   return Array.from(new Set(array));
 }
-search.addEventListener("input", () => fetchAllPokemons(search.value));
 
 // Click on searchcard to display specific pokemon
 function pickPokemon(e) {

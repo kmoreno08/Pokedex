@@ -20,7 +20,6 @@ body {
 .filter-wrapper {
   width: 1100px;
   background: #22364a;
-
   height: 30vh;
   margin: 0 auto;
 }
@@ -38,6 +37,10 @@ body {
   z-index: 3;
   align-self: center;
 }
+
+/* .match-list {
+  overflow-y: scroll;
+} */
 
 .poke-counter {
   align-self: center;
@@ -92,6 +95,38 @@ input[type="text"] {
   align-items: center;
   letter-spacing: 2.5px;
   max-width: 331px;
+}
+.search-box-wrapper {
+  width: 600px;
+  height: 54px;
+  background: rgb(32, 42, 67) none repeat scroll 0% 0%;
+  cursor: text;
+  border: 1px solid rgba(158, 175, 208, 0.3);
+  border-radius: 8px;
+  transition: all 0.1s ease-out 0s;
+  color: rgb(229, 235, 239);
+  font-size: 1em;
+  line-height: 1.5;
+  cursor: text;
+  display: flex;
+  align-items: center;
+}
+.search-box-wrapper:hover,
+.search-box-text:hover {
+  background: #283254;
+}
+
+.search-box-text {
+  font-weight: 400;
+  font-size: 1rem;
+  margin-left: 15px;
+  letter-spacing: 0.5px;
+  padding: 13px 0px 0px 1.5rem;
+  width: 92%;
+  background: rgb(32, 42, 67) none repeat scroll 0% 0%;
+  height: 100%;
+  overflow: hidden;
+  color: rgb(158, 175, 208);
 }
 
 .searchCard:hover {

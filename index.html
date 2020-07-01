@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div class="filter-wrapper">
       <div class="filter-bar">
         <h1>PokeDex</h1>
         <div class="form-group">
-          <input
-            type="text"
-            id="search"
-            class="form-control form-control-lg"
-            placeholder="Enter pokemon.."
-          />
+          <div class="search-box-wrapper">
+            <div class="search-box-text">
+              Search Pokemon
+            </div>
+            <div class="search-icon"><i class="fas fa-search"></i></div>
+          </div>
           <div id="match-list"></div>
         </div>
         <div class="poke-counter"></div>
