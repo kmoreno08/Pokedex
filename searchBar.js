@@ -447,3 +447,31 @@ btnNormal.addEventListener("click", function () {
   addCurrentBtnClass(btnNormal);
   fetchNormalPokemon();
 });
+
+// Modal - search bar
+const clearBtn = document.querySelector(".modal-search-clear");
+const searchBox = document.querySelector(".search-box");
+const modalSearchBox = document.querySelector(".modal-search-box-text");
+
+const modal = document.querySelector("#modal");
+//close button on modal
+const closeBtn = document.querySelector(".modal-close-btn");
+// Listen for open click
+searchBox.addEventListener("click", openModal);
+// Listen for close click
+closeBtn.addEventListener("click", closeModal);
+// Listen for clear button
+clearBtn.addEventListener("click", clearTextBox);
+// Function to clear text box
+function clearTextBox() {
+  console.log("Entered clear  ");
+  modalSearchBox.value = " ";
+}
+// Function to open modal
+function openModal() {
+  modal.style.display = "block";
+}
+// Function to close modal
+function closeModal() {
+  modal.style.display = "none";
+}

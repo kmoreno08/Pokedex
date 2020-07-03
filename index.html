@@ -13,14 +13,33 @@
     />
   </head>
   <body>
+    <div id="modal">
+      <div id="modal-wrapper">
+        <div id="modal-search-box">
+          <div id="modal-search-box-left">
+            <div class="modal-search-icon"><i class="fas fa-search"></i></div>
+            <input
+              type="searchText"
+              placeholder=" "
+              autofocus
+              autocomplete="off"
+              class="modal-search-box-text"
+            />
+          </div>
+          <div id="modal-search-box-right">
+            <span class="modal-search-clear">Clear</span>
+            <span class="modal-close-btn">X</span>
+          </div>
+        </div>
+        <div id="modal-content"></div>
+      </div>
+    </div>
     <div class="filter-wrapper">
       <div class="filter-bar">
         <h1>PokeDex</h1>
         <div class="form-group">
-          <div class="search-box-wrapper">
-            <div class="search-box-text">
-              Search Pokemon
-            </div>
+          <div class="search-box">
+            <div class="search-box-text"></div>
             <div class="search-icon"><i class="fas fa-search"></i></div>
           </div>
           <div id="match-list"></div>
