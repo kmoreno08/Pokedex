@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
-
 * {
   box-sizing: border-box;
   margin: 0;
 }
-
 body {
   background: -webkit-linear-gradient(to right, #d4d3dd, #efefbb);
   background: linear-gradient(to right, #181f2c, #171c26);
@@ -16,7 +14,6 @@ body {
   font-family: "Lato";
   margin: 0;
 }
-
 .filter-wrapper {
   width: 1100px;
   background: #22364a;
@@ -32,17 +29,14 @@ body {
 .filter-bar h1 {
   margin-top: 20px;
 }
-
 .form-group {
   align-self: center;
 }
-
 .poke-counter {
   align-self: center;
   width: 200px;
   color: #efefbb;
 }
-
 .filter-row {
   width: 100%;
   display: flex;
@@ -51,7 +45,6 @@ body {
   justify-content: center;
   height: 50%;
 }
-
 .toggle-button {
   margin-right: 0.25rem;
   text-rendering: auto;
@@ -70,12 +63,10 @@ body {
   background: rgb(121, 134, 163);
   color: #efefbb;
 }
-
 .current-button {
   background: rgb(121, 134, 163);
   color: #efefbb;
 }
-
 input[type="text"] {
   padding: 6px;
   border: none;
@@ -83,22 +74,23 @@ input[type="text"] {
   font-size: 30px;
   text-align: center;
 }
-
 .searchCard {
-  font-size: 32px;
+  font-size: 22px;
   color: white;
-  height: 75px;
+  height: 45px;
+  width: 100%;
   text-align: center;
-  border: 2px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
   letter-spacing: 2.5px;
-  max-width: 331px;
 }
-
+.searchCard:hover {
+  cursor: pointer;
+  background: #283254;
+}
 #modal {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 2;
   left: 0;
@@ -108,7 +100,6 @@ input[type="text"] {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.9);
 }
-
 #modal-wrapper {
   margin: 5% auto;
   width: 60%;
@@ -118,7 +109,6 @@ input[type="text"] {
   justify-content: center;
   align-items: center;
 }
-
 #modal-search-box {
   width: 100%;
   height: 54px;
@@ -135,7 +125,6 @@ input[type="text"] {
   justify-content: space-between;
   padding: 20px 20px 20px 50px;
 }
-
 #modal-search-box-left {
   display: flex;
   width: 80%;
@@ -151,7 +140,6 @@ input[type="searchText"] {
   font-size: 20px;
   text-align: left;
 }
-
 .modal-search-icon {
   display: flex;
   align-items: center;
@@ -175,6 +163,7 @@ input[type="searchText"] {
   padding: 20px;
   width: 100%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
 }
 .search-box {
   width: 600px;
@@ -194,7 +183,6 @@ input[type="searchText"] {
 .search-box:hover {
   background: #283254;
 }
-
 .search-box-text {
   font-weight: 400;
   font-size: 1rem;
@@ -206,16 +194,10 @@ input[type="searchText"] {
   overflow: hidden;
   color: rgb(158, 175, 208);
 }
-
-.searchCard:hover {
-  cursor: pointer;
-}
-
 h1 {
   letter-spacing: 3px;
   color: #efefbb;
 }
-
 .poke-container {
   display: flex;
   flex-wrap: wrap;
@@ -224,7 +206,6 @@ h1 {
   margin: 0 auto;
   max-width: 1200px;
 }
-
 .pokemon {
   background-color: #eee;
   border-radius: 20px;
@@ -233,11 +214,9 @@ h1 {
   text-align: center;
   transition: transform 0.25s;
 }
-
 .pokemon:hover {
   transform: scale(0.95);
 }
-
 .pokemon .img-container {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
@@ -245,23 +224,19 @@ h1 {
   height: 120px;
   text-align: center;
 }
-
 .pokemon .img-container img {
   margin-top: 20px;
   max-width: 90%;
 }
-
 .pokemon .info {
   margin-top: 20px;
 }
-
 .pokemon .number {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   font-size: 0.8em;
   padding: 5px 10px;
 }
-
 .pokemon .name {
   margin: 15px 0 7px;
   letter-spacing: 1px;

@@ -1,80 +1,3 @@
-const search = document.getElementById("search");
-const matchList = document.getElementById("match-list");
-let pokeNameArray = [];
-// search.addEventListener("input", () => fetchAllPokemons(search.value));
-
-const fetchAllPokemons = async (searchText) => {
-  for (let i = 1; i <= pokemons_number; i++) {
-    await searchPokemon(i);
-  }
-  let matches = pokeNameArray.filter((poke) => {
-    const regex = new RegExp(`^${searchText}`, "gi");
-    return poke.match(regex);
-  });
-
-  // Show results in HTML
-  let pokeSearchArray = removeDuplicates(matches);
-  // console.log(pokeSearchArray);
-  let html = "";
-  pokeSearchArray.forEach((pokemon) => {
-    html += `
-      <div class="searchCard" onmousedown="pickPokemon(this)">
-       <h4>${pokemon}</h4>
-       </div>`;
-  });
-
-  matchList.innerHTML = html;
-};
-
-const searchPokemon = async (id) => {
-  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-  const res = await fetch(url);
-  const pokemon = await res.json();
-  // add to array
-  pokeNameArray.push(pokemon.name);
-};
-// Remove duplicate from arrays
-function removeDuplicates(array) {
-  return Array.from(new Set(array));
-}
-
-// Click on searchcard to display specific pokemon
-function pickPokemon(e) {
-  let pokemonChoice = e.firstElementChild.firstChild.data;
-  getSpecificPokemon(pokemonChoice);
-}
-
-// Grab specific pokemon - by name
-const getSpecificPokemon = async (name) => {
-  const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
-  const res = await fetch(url);
-  const pokemon = await res.json();
-  clearPokemon();
-  clearSearchBar();
-  createPokemonCard(pokemon);
-};
-
-// Clear pokemon cards
-function clearPokemon() {
-  poke_counter = 0;
-  const pokeContainer = document.querySelector("#poke_container");
-  const pokeCard = pokeContainer.querySelectorAll(".pokemon");
-  for (let i = 0; i < pokeCard.length; i++) {
-    pokeCard[i].remove();
-  }
-  removeCurrentBtnClass();
-}
-
-// clear search bar value and drop down
-function clearSearchBar() {
-  const searchCard = document.querySelectorAll(".searchCard");
-  const searchBar = document.querySelector("#search");
-  for (let i = 0; i < searchCard.length; i++) {
-    searchCard[i].remove();
-  }
-  search.value = "";
-}
-
 // button for types
 const btnAll = document.getElementById("btn-all");
 const btnFire = document.getElementById("btn-fire");
@@ -91,7 +14,6 @@ const btnPsychic = document.getElementById("btn-psychic");
 const btnFlying = document.getElementById("btn-flying");
 const btnFighting = document.getElementById("btn-fighting");
 const btnNormal = document.getElementById("btn-normal");
-
 // Get fire pokemon only
 const fetchFirePokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -108,7 +30,6 @@ const getFirePokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // Get grass pokemon only
 const fetchGrassPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -142,7 +63,6 @@ const getElectricPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get water pokemon only
 const fetchWaterPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -159,7 +79,6 @@ const getWaterPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get ground pokemon only
 const fetchGroundPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -176,7 +95,6 @@ const getGroundPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get rock pokemon only
 const fetchRockPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -193,7 +111,6 @@ const getRockPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get fairy pokemon only
 const fetchFairyPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -210,7 +127,6 @@ const getFairyPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get poison pokemon only
 const fetchPoisonPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -227,7 +143,6 @@ const getPoisonPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get bug pokemon only
 const fetchBugPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -244,7 +159,6 @@ const getBugPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get dragon pokemon only
 const fetchDragonPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -261,7 +175,6 @@ const getDragonPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get psychic pokemon only
 const fetchPsychicPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -278,7 +191,6 @@ const getPsychicPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get flying pokemon only
 const fetchFlyingPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -295,7 +207,6 @@ const getFlyingPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get fighting pokemon only
 const fetchFightingPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -312,7 +223,6 @@ const getFightingPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // get normal pokemon only
 const fetchNormalPokemon = async () => {
   for (let i = 1; i <= pokemons_number; i++) {
@@ -356,103 +266,88 @@ btnFire.addEventListener("click", function () {
   addCurrentBtnClass(btnFire);
   fetchFirePokemon();
 });
-
 // show all grass type pokemon
 btnGrass.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnGrass);
   fetchGrassPokemon();
 });
-
 // show all electric type pokemon
 btnElectric.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnElectric);
   fetchElectricPokemon();
 });
-
 // show all water type pokemon
 btnWater.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnWater);
   fetchWaterPokemon();
 });
-
 // show all ground type pokemon
 btnGround.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnGround);
   fetchGroundPokemon();
 });
-
 // show all rock type pokemon
 btnRock.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnRock);
   fetchRockPokemon();
 });
-
 // show all fairy type pokemon
 btnFairy.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnFairy);
   fetchFairyPokemon();
 });
-
 // show all poison type pokemon
 btnPoison.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnPoison);
   fetchPoisonPokemon();
 });
-
 // show all bug type pokemon
 btnBug.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnBug);
   fetchBugPokemon();
 });
-
 // show all dragon type pokemon
 btnDragon.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnDragon);
   fetchDragonPokemon();
 });
-
 // show all psychic type pokemon
 btnPsychic.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnPsychic);
   fetchPsychicPokemon();
 });
-
 // show all flying type pokemon
 btnFlying.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnFlying);
   fetchFlyingPokemon();
 });
-
 // show all flying type pokemon
 btnFighting.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnFighting);
   fetchFightingPokemon();
 });
-
 // show all flying type pokemon
 btnNormal.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnNormal);
   fetchNormalPokemon();
 });
-
 // Modal - search bar
 const clearBtn = document.querySelector(".modal-search-clear");
 const searchBox = document.querySelector(".search-box");
 const modalSearchBox = document.querySelector(".modal-search-box-text");
-
 const modal = document.querySelector("#modal");
 //close button on modal
 const closeBtn = document.querySelector(".modal-close-btn");
@@ -464,7 +359,6 @@ closeBtn.addEventListener("click", closeModal);
 clearBtn.addEventListener("click", clearTextBox);
 // Function to clear text box
 function clearTextBox() {
-  console.log("Entered clear  ");
   modalSearchBox.value = " ";
 }
 // Function to open modal
@@ -474,4 +368,75 @@ function openModal() {
 // Function to close modal
 function closeModal() {
   modal.style.display = "none";
+}
+// const search = document.getElementById("search");
+const matchList = document.getElementById("match-list");
+let pokeNameArray = [];
+modalSearchBox.addEventListener("input", () =>
+  fetchAllPokemons(modalSearchBox.value)
+);
+const fetchAllPokemons = async (searchText) => {
+  for (let i = 1; i <= pokemons_number; i++) {
+    await searchPokemon(i);
+  }
+  let matches = pokeNameArray.filter((poke) => {
+    const regex = new RegExp(`^${searchText}`, "gi");
+    return poke.match(regex);
+  });
+  // Show results in HTML
+  let pokeSearchArray = removeDuplicates(matches);
+  let html = "";
+  pokeSearchArray.forEach((pokemon) => {
+    html += `
+      <div class="searchCard" onmousedown="pickPokemon(this)">
+       <h4>${pokemon}</h4>
+       </div>`;
+  });
+  matchList.innerHTML = html;
+};
+// Search pokemon name and put in to array
+const searchPokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  // add to array
+  pokeNameArray.push(pokemon.name);
+};
+// Remove duplicate from arrays
+function removeDuplicates(array) {
+  return Array.from(new Set(array));
+}
+// Click on searchcard to display specific pokemon
+function pickPokemon(e) {
+  let pokemonChoice = e.firstElementChild.firstChild.data;
+  getSpecificPokemon(pokemonChoice);
+}
+// Grab specific pokemon - by name
+const getSpecificPokemon = async (name) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  clearPokemon();
+  clearSearchBar();
+  closeModal();
+  createPokemonCard(pokemon);
+};
+
+// Clear pokemon cards
+function clearPokemon() {
+  poke_counter = 0;
+  const pokeContainer = document.querySelector("#poke_container");
+  const pokeCard = pokeContainer.querySelectorAll(".pokemon");
+  for (let i = 0; i < pokeCard.length; i++) {
+    pokeCard[i].remove();
+  }
+  removeCurrentBtnClass();
+}
+// clear search bar value and drop down
+function clearSearchBar() {
+  const searchCard = document.querySelectorAll(".searchCard");
+  for (let i = 0; i < searchCard.length; i++) {
+    searchCard[i].remove();
+  }
+  modalSearchBox.value = "";
 }
