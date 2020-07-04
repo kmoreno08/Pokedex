@@ -50,22 +50,14 @@ function createPokemonCard(pokemon) {
   // Add each pokemon to div with class
   const pokemonEl = document.createElement("div");
   pokemonEl.classList.add("pokemon");
-  // Grabs the type
+  // Grabs the types
   const poke_types = pokemon.types.map((type) => type.type.name);
-
   //Get pokemon name
   const pokemonName = pokemon.name;
-  // Add name to object
-  pokemonObject["name"] = pokemonName;
   // Get Id Number
   const idNumber = pokemon.id;
-  // Add ID to object
-  pokemonObject["id"] = idNumber;
   // Front default sprite link
   const frontDefaultSprite = pokemon.sprites.front_default;
-  // Add front sprite link
-  pokemonObject["frontSprite"] = frontDefaultSprite;
-
   /* all 6 base-stats in poke_base_stats array:
       0 = hp
       1 = attack
@@ -76,30 +68,12 @@ function createPokemonCard(pokemon) {
   const poke_base_stats = pokemon.stats.map((stat) => stat.base_stat);
   // Health points
   const pokemonHealthPoints = poke_base_stats[0];
-  //Add health points to object
-  pokemonObject["healthPoints"] = pokemonHealthPoints;
   // Attack points
   const pokemonAttackPoints = poke_base_stats[1];
-  // Add attack to object
-  pokemonObject["attackPoints"] = pokemonAttackPoints;
   // Defense points
   const pokemonDefensePoints = poke_base_stats[2];
-  pokemonObject["defensePoints"] = pokemonDefensePoints;
-  // weight
-  const poke_weight = pokemon.weight;
-
-  // base experience
-  const poke_base_exp = pokemon.base_experience;
-
-  // all pokemon moves on to array
-  const poke_moves = pokemon.moves.map((move) => move.move.name);
-
-  // Goes over types and finds the first match
-  const type = main_types.find((type) => poke_types.indexOf(type) > -1);
-
-  // add to array
+  // add to name array
   pokeNameArray.push(pokemon.name);
-
   // Type with correct color
   let type2;
   let type1 = poke_types[0];
@@ -108,9 +82,22 @@ function createPokemonCard(pokemon) {
   } else {
     type2 = poke_types[1];
   }
+  addPokemonToObject(
+    idNumber,
+    pokemonName,
+    frontDefaultSprite,
+    pokemonHealthPoints,
+    pokemonAttackPoints,
+    pokemonDefensePoints,
+    type1,
+    type2
+  );
+  // Add types to pokemon object
+  pokemonObject["type1"] = type1;
+  pokemonObject["type2"] = type2;
+  // use type to get the correct color background
   const colorBackground1 = colors[type1];
   const colorBackground2 = colors[type2];
-
   // Gradient background color by type
   pokemonEl.style.background =
     "linear-gradient(61deg, " +
@@ -118,7 +105,6 @@ function createPokemonCard(pokemon) {
     "  54.3%," +
     colorBackground2 +
     " 50%)";
-
   // Add Html to pokemon card
   const pokeInnerHTML = `
         <div class="img-container">
@@ -137,17 +123,35 @@ function createPokemonCard(pokemon) {
            
         </div>
     `;
-
   pokemonEl.innerHTML = pokeInnerHTML;
-
   // Append pokemon card to container
   poke_container.appendChild(pokemonEl);
   console.log(pokemonObject);
 }
 fetchPokemons();
-
 //Update and display poke counter
 function updatePokeCounter() {
   poke_counter_div.innerHTML = `<h4>Cards</h4>
         ${poke_counter} of ${pokemons_number}`;
+}
+// Update pokemon object
+function addPokemonToObject(
+  ID,
+  name,
+  sprite,
+  health,
+  attack,
+  defense,
+  type1,
+  type2
+) {
+  pokemonObject[name] = {
+    ID: ID,
+    sprite: sprite,
+    health: health,
+    attack: attack,
+    defense: defense,
+    type1: type1,
+    type2: type2,
+  };
 }

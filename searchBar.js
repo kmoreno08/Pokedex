@@ -369,28 +369,29 @@ function closeModal() {
 const matchList = document.getElementById("match-list");
 
 modalSearchBox.addEventListener("input", () =>
-  pokemonInfo(modalSearchBox.value)
+  pokemonInfo(modalSearchBox.value, pokemonObject)
 );
 
-function pokemonInfo(searchText) {
+function pokemonInfo(searchText, pokemonObject) {
+  console.log(pokemonObject);
   // Filter names and return match
   let matches = pokeNameArray.filter((poke) => {
     const regex = new RegExp(`^${searchText}`, "gi");
     return poke.match(regex);
   });
   // Show results in search bar modal
-  let pokeSearchArray = removeDuplicates(matches);
-  let html = "";
-
-  pokeSearchArray.forEach((pokemonName) => {
+  let searchCardInnerHTML = "";
+  matches.forEach((pokemonName) => {
     // Capitalize first letter
     const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
-    html += `
+    // let found = myObjects.find(e => e.id === "a");
+    searchCardInnerHTML += `
       <div class="searchCard" onmousedown="pickPokemon(this)">
       <h4>${name}</h4>
+      
       </div>`;
   });
-  matchList.innerHTML = html;
+  matchList.innerHTML = searchCardInnerHTML;
 }
 
 // Remove duplicate from arrays
