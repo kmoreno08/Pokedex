@@ -239,10 +239,8 @@ const getNormalPokemon = async (id) => {
     createPokemonCard(pokemon);
   }
 };
-
 // toggle highlight for current button
 const allBtn = document.querySelectorAll(".toggle-button");
-
 function removeCurrentBtnClass() {
   for (let i = 0; i < allBtn.length; i++) {
     allBtn[i].classList.remove("current-button");
@@ -252,14 +250,12 @@ function removeCurrentBtnClass() {
 function addCurrentBtnClass(element) {
   element.classList.add("current-button");
 }
-
 // Show all pokemon
 btnAll.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnAll);
   fetchPokemons();
 });
-
 // Show all fire type pokemon
 btnFire.addEventListener("click", function () {
   clearPokemon();
@@ -369,39 +365,34 @@ function openModal() {
 function closeModal() {
   modal.style.display = "none";
 }
-// const search = document.getElementById("search");
+// User input match with pokemon search bar
 const matchList = document.getElementById("match-list");
-let pokeNameArray = [];
+
 modalSearchBox.addEventListener("input", () =>
-  fetchAllPokemons(modalSearchBox.value)
+  pokemonInfo(modalSearchBox.value)
 );
-const fetchAllPokemons = async (searchText) => {
-  for (let i = 1; i <= pokemons_number; i++) {
-    await searchPokemon(i);
-  }
+
+function pokemonInfo(searchText) {
+  // Filter names and return match
   let matches = pokeNameArray.filter((poke) => {
     const regex = new RegExp(`^${searchText}`, "gi");
     return poke.match(regex);
   });
-  // Show results in HTML
+  // Show results in search bar modal
   let pokeSearchArray = removeDuplicates(matches);
   let html = "";
-  pokeSearchArray.forEach((pokemon) => {
+
+  pokeSearchArray.forEach((pokemonName) => {
+    // Capitalize first letter
+    const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
     html += `
       <div class="searchCard" onmousedown="pickPokemon(this)">
-       <h4>${pokemon}</h4>
-       </div>`;
+      <h4>${name}</h4>
+      </div>`;
   });
   matchList.innerHTML = html;
-};
-// Search pokemon name and put in to array
-const searchPokemon = async (id) => {
-  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-  const res = await fetch(url);
-  const pokemon = await res.json();
-  // add to array
-  pokeNameArray.push(pokemon.name);
-};
+}
+
 // Remove duplicate from arrays
 function removeDuplicates(array) {
   return Array.from(new Set(array));
@@ -413,7 +404,7 @@ function pickPokemon(e) {
 }
 // Grab specific pokemon - by name
 const getSpecificPokemon = async (name) => {
-  const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+  const url = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   clearPokemon();

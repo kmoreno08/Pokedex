@@ -3,6 +3,11 @@ const poke_counter_div = document.querySelector(".poke-counter");
 // Includes Mew 151 - Max 964
 const pokemons_number = 151;
 const pokemons_max_number = 964;
+//Array for pokemon names
+const pokeNameArray = [];
+// Object for all pokemon
+let pokemonObject = {};
+
 let poke_counter = 0;
 // Colors for type
 const colors = {
@@ -48,7 +53,20 @@ function createPokemonCard(pokemon) {
   // Grabs the type
   const poke_types = pokemon.types.map((type) => type.type.name);
 
-  /* all 6 base-stats in array:
+  //Get pokemon name
+  const pokemonName = pokemon.name;
+  // Add name to object
+  pokemonObject["name"] = pokemonName;
+  // Get Id Number
+  const idNumber = pokemon.id;
+  // Add ID to object
+  pokemonObject["id"] = idNumber;
+  // Front default sprite link
+  const frontDefaultSprite = pokemon.sprites.front_default;
+  // Add front sprite link
+  pokemonObject["frontSprite"] = frontDefaultSprite;
+
+  /* all 6 base-stats in poke_base_stats array:
       0 = hp
       1 = attack
       2 = defense
@@ -56,21 +74,31 @@ function createPokemonCard(pokemon) {
       4 = special-defense
       5 = speed */
   const poke_base_stats = pokemon.stats.map((stat) => stat.base_stat);
+  // Health points
+  const pokemonHealthPoints = poke_base_stats[0];
+  //Add health points to object
+  pokemonObject["healthPoints"] = pokemonHealthPoints;
+  // Attack points
+  const pokemonAttackPoints = poke_base_stats[1];
+  // Add attack to object
+  pokemonObject["attackPoints"] = pokemonAttackPoints;
+  // Defense points
+  const pokemonDefensePoints = poke_base_stats[2];
+  pokemonObject["defensePoints"] = pokemonDefensePoints;
   // weight
   const poke_weight = pokemon.weight;
 
   // base experience
   const poke_base_exp = pokemon.base_experience;
-  // front image for back of card
-  const front_sprite = pokemon.sprites.front_default;
+
   // all pokemon moves on to array
   const poke_moves = pokemon.moves.map((move) => move.move.name);
 
   // Goes over types and finds the first match
   const type = main_types.find((type) => poke_types.indexOf(type) > -1);
 
-  // Capitalize first letter
-  const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+  // add to array
+  pokeNameArray.push(pokemon.name);
 
   // Type with correct color
   let type2;
@@ -114,6 +142,7 @@ function createPokemonCard(pokemon) {
 
   // Append pokemon card to container
   poke_container.appendChild(pokemonEl);
+  console.log(pokemonObject);
 }
 fetchPokemons();
 
