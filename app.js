@@ -47,6 +47,7 @@ const getPokemon = async (id) => {
 function createPokemonCard(pokemon) {
   // Count each pokemon for poke counter
   poke_counter += 1;
+  console.log(pokemon);
   // Add each pokemon to div with class
   const pokemonEl = document.createElement("div");
   pokemonEl.classList.add("pokemon");

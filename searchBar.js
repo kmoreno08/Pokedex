@@ -386,11 +386,9 @@ function pokemonInfo(searchText) {
     const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
     // Data
     const pokemonID = pokemonObject[pokemonName].ID;
-    const pokemonSpriteLink = pokemonObject[pokemonName].sprite;
     const pokemonHealth = pokemonObject[pokemonName].health;
     const pokemonAttack = pokemonObject[pokemonName].attack;
     const pokemonDefense = pokemonObject[pokemonName].defense;
-    // let found = myObjects.find(e => e.id === "a");
     searchCardInnerHTML += `
     <div class="searchCard" onmousedown="pickPokemon(this)">
       <div class="search-card-left">
@@ -401,7 +399,7 @@ function pokemonInfo(searchText) {
         <h4>${name}</h4>
       </div>
       <div class="search-card-right">
-          <h5>HP: ${pokemonHealth}</h5>
+          <h5>Health: ${pokemonHealth}</h5>
           <h5>Attack: ${pokemonAttack}</h5>
           <h5>Defense: ${pokemonDefense}</h5>
       </div>
@@ -416,7 +414,7 @@ function removeDuplicates(array) {
 }
 // Click on searchcard to display specific pokemon
 function pickPokemon(e) {
-  let pokemonChoice = e.firstElementChild.firstChild.data;
+  let pokemonChoice = e.firstElementChild.childNodes[5].textContent;
   getSpecificPokemon(pokemonChoice);
 }
 // Grab specific pokemon - by name
