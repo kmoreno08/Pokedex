@@ -92,9 +92,6 @@ function createPokemonCard(pokemon) {
     type1,
     type2
   );
-  // Add types to pokemon object
-  pokemonObject["type1"] = type1;
-  pokemonObject["type2"] = type2;
   // use type to get the correct color background
   const colorBackground1 = colors[type1];
   const colorBackground2 = colors[type2];
@@ -126,7 +123,6 @@ function createPokemonCard(pokemon) {
   pokemonEl.innerHTML = pokeInnerHTML;
   // Append pokemon card to container
   poke_container.appendChild(pokemonEl);
-  console.log(pokemonObject);
 }
 fetchPokemons();
 //Update and display poke counter

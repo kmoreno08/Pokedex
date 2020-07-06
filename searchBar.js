@@ -372,24 +372,40 @@ modalSearchBox.addEventListener("input", () =>
   pokemonInfo(modalSearchBox.value, pokemonObject)
 );
 
-function pokemonInfo(searchText, pokemonObject) {
-  console.log(pokemonObject);
+function pokemonInfo(searchText) {
   // Filter names and return match
   let matches = pokeNameArray.filter((poke) => {
     const regex = new RegExp(`^${searchText}`, "gi");
     return poke.match(regex);
   });
+
   // Show results in search bar modal
   let searchCardInnerHTML = "";
   matches.forEach((pokemonName) => {
     // Capitalize first letter
     const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
+    // Data
+    const pokemonID = pokemonObject[pokemonName].ID;
+    const pokemonSpriteLink = pokemonObject[pokemonName].sprite;
+    const pokemonHealth = pokemonObject[pokemonName].health;
+    const pokemonAttack = pokemonObject[pokemonName].attack;
+    const pokemonDefense = pokemonObject[pokemonName].defense;
     // let found = myObjects.find(e => e.id === "a");
     searchCardInnerHTML += `
-      <div class="searchCard" onmousedown="pickPokemon(this)">
-      <h4>${name}</h4>
-      
-      </div>`;
+    <div class="searchCard" onmousedown="pickPokemon(this)">
+      <div class="search-card-left">
+        <h5>#${pokemonID}</h5>
+        <div class="search-card-img-container">
+              <img src="https://pokeres.bastionbot.org/images/pokemon/${pokemonID}.png" alt="${name}" />
+        </div>
+        <h4>${name}</h4>
+      </div>
+      <div class="search-card-right">
+          <h5>HP: ${pokemonHealth}</h5>
+          <h5>Attack: ${pokemonAttack}</h5>
+          <h5>Defense: ${pokemonDefense}</h5>
+      </div>
+    </div>`;
   });
   matchList.innerHTML = searchCardInnerHTML;
 }

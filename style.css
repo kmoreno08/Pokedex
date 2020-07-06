@@ -81,13 +81,47 @@ input[type="text"] {
   width: 100%;
   text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   letter-spacing: 2.5px;
+  padding: 0 50px;
 }
 .searchCard:hover {
   cursor: pointer;
   background: #283254;
+}
+
+.search-card-left {
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 45%;
+}
+.search-card-left h5 {
+  width: 25%;
+  display: flex;
+  justify-content: flex-start;
+}
+.search-card-left h4 {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.search-card-right {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  align-items: flex-start;
+}
+
+.search-card-img-container {
+  display: flex;
+  width: 10%;
+}
+.search-card-img-container img {
+  height: 25px;
+  width: 25px;
 }
 #modal {
   display: none;
