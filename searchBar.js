@@ -254,7 +254,8 @@ function addCurrentBtnClass(element) {
 btnAll.addEventListener("click", function () {
   clearPokemon();
   addCurrentBtnClass(btnAll);
-  fetchPokemons();
+  createPokemonCard(pokemonArrayObject);
+  // fetchPokemons();
 });
 // Show all fire type pokemon
 btnFire.addEventListener("click", function () {
@@ -373,9 +374,6 @@ modalSearchBox.addEventListener("input", () =>
 );
 
 function pokemonInfo(searchText) {
-  console.log("pokemon info");
-  console.log(pokemonArrayObject);
-  console.log(pokemonArrayObject[1]);
   for (let i = 0; i < pokemons_number; i++) {
     console.log(pokemonArrayObject[i]);
   }
@@ -394,7 +392,6 @@ function pokemonInfo(searchText) {
     // Data
     const pokemonID = pokemonObject[pokemonName].ID;
 
-    console.log(pokemonID);
     const pokemonHealth = pokemonObject[pokemonName].health;
     const pokemonAttack = pokemonObject[pokemonName].attack;
     const pokemonDefense = pokemonObject[pokemonName].defense;
