@@ -369,10 +369,16 @@ function closeModal() {
 const matchList = document.getElementById("match-list");
 
 modalSearchBox.addEventListener("input", () =>
-  pokemonInfo(modalSearchBox.value, pokemonObject)
+  pokemonInfo(modalSearchBox.value, pokemonArrayObject)
 );
 
 function pokemonInfo(searchText) {
+  console.log("pokemon info");
+  console.log(pokemonArrayObject);
+  console.log(pokemonArrayObject[1]);
+  for (let i = 0; i < pokemons_number; i++) {
+    console.log(pokemonArrayObject[i]);
+  }
   // Filter names and return match
   let matches = pokeNameArray.filter((poke) => {
     const regex = new RegExp(`^${searchText}`, "gi");
@@ -384,8 +390,11 @@ function pokemonInfo(searchText) {
   matches.forEach((pokemonName) => {
     // Capitalize first letter
     const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
+
     // Data
     const pokemonID = pokemonObject[pokemonName].ID;
+
+    console.log(pokemonID);
     const pokemonHealth = pokemonObject[pokemonName].health;
     const pokemonAttack = pokemonObject[pokemonName].attack;
     const pokemonDefense = pokemonObject[pokemonName].defense;
