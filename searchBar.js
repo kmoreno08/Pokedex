@@ -27,13 +27,10 @@ function closeModal() {
 const matchList = document.getElementById("match-list");
 
 modalSearchBox.addEventListener("input", () =>
-  pokemonInfo(modalSearchBox.value, pokemonArrayObject)
+  pokemonInfo(modalSearchBox.value)
 );
 
 function pokemonInfo(searchText) {
-  for (let i = 0; i < pokemons_number; i++) {
-    console.log(pokemonArrayObject[i]);
-  }
   // Filter names and return match
   let matches = pokeNameArray.filter((poke) => {
     const regex = new RegExp(`^${searchText}`, "gi");
@@ -41,17 +38,29 @@ function pokemonInfo(searchText) {
   });
 
   // Show results in search bar modal
+
   let searchCardInnerHTML = "";
   matches.forEach((pokemonName) => {
+    console.log(pokemonName);
     // Capitalize first letter
     const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
+    /*
+    Pokemon Array -
+    0 - ID
+    1 - Health
+    2 - Attack
+    3 - Defense
+    */
+    const pokeArray = searchPokemon(pokemonName);
+    // Grab ID
+    const pokemonID = pokeArray[0];
+    // Grab Health
+    const pokemonHealth = pokeArray[1];
+    // Grab Attack
+    const pokemonAttack = pokeArray[2];
+    // Grab Defense
+    const pokemonDefense = pokeArray[3];
 
-    // Data
-    const pokemonID = pokemonObject[pokemonName].ID;
-
-    const pokemonHealth = pokemonObject[pokemonName].health;
-    const pokemonAttack = pokemonObject[pokemonName].attack;
-    const pokemonDefense = pokemonObject[pokemonName].defense;
     searchCardInnerHTML += `
     <div class="searchCard" onmousedown="pickPokemon(this)">
       <div class="search-card-left">
@@ -71,6 +80,32 @@ function pokemonInfo(searchText) {
   matchList.innerHTML = searchCardInnerHTML;
 }
 
+// Search pokemon for search card
+function searchPokemon(pokemonName) {
+  for (let i = 0; i < pokemons_number; i++) {
+    const pokeObjectName = pokemonArrayObject[i].name;
+    // Check if names match
+    if (pokeObjectName === pokemonName) {
+      // Grab ID
+      const pokemonID = pokemonArrayObject[i].ID;
+      // Grab Health
+      const pokemonHealth = pokemonArrayObject[i].health;
+      // Grab Attack
+      const pokemonAttack = pokemonArrayObject[i].attack;
+      // Grab Defense
+      const pokemonDefense = pokemonArrayObject[i].defense;
+      // Add elements to array
+      const pokemonArray = [
+        pokemonID,
+        pokemonHealth,
+        pokemonAttack,
+        pokemonDefense,
+      ];
+      // Return array
+      return pokemonArray;
+    }
+  }
+}
 // Remove duplicate from arrays
 function removeDuplicates(array) {
   return Array.from(new Set(array));
