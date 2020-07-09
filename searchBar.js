@@ -38,12 +38,18 @@ function pokemonInfo(searchText) {
     return poke.match(regex);
   });
 
+  console.log("before");
+  console.log(matches);
   // Show results in search bar modal
   let searchCardInnerHTML = "";
-  matches.forEach((pokemonName) => {
-    console.log(pokemonName);
+  let matchesNoDuplicates = removeDuplicates(matches);
+  console.log("After");
+  console.log(matchesNoDuplicates);
+  matchesNoDuplicates.forEach((pokemonName) => {
     // Capitalize first letter
     const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
+    ///////Test////
+
     /*
     Pokemon Array -
     0 - ID
@@ -52,6 +58,7 @@ function pokemonInfo(searchText) {
     3 - Defense
     */
     const pokeArray = searchPokemon(pokemonName);
+
     // Grab ID
     const pokemonID = pokeArray[0];
     // Grab Health
