@@ -64,13 +64,8 @@ function createPokemonCard(i) {
   /////////////////////////////////////
   const pokemonName = pokemonArrayObject[i].name;
   const pokemonID = pokemonArrayObject[i].ID;
-  // const pokemonHealth = pokemonArrayObject[i].health;
-
-  // const pokemonAttack = pokemonArrayObject[i].attack;
-  // const pokemonDefense = pokemonArrayObject[i].defense;
   const type1 = pokemonArrayObject[i].type1;
   const type2 = pokemonArrayObject[i].type2;
-
   const colorBackground1 = colors[type1];
   const colorBackground2 = colors[type2];
   // Gradient background color by type

@@ -14,6 +14,7 @@ clearBtn.addEventListener("click", clearTextBox);
 // Function to clear text box
 function clearTextBox() {
   modalSearchBox.value = " ";
+  clearSearchBar();
 }
 // Function to open modal
 function openModal() {
@@ -38,7 +39,6 @@ function pokemonInfo(searchText) {
   });
 
   // Show results in search bar modal
-
   let searchCardInnerHTML = "";
   matches.forEach((pokemonName) => {
     console.log(pokemonName);
@@ -60,7 +60,7 @@ function pokemonInfo(searchText) {
     const pokemonAttack = pokeArray[2];
     // Grab Defense
     const pokemonDefense = pokeArray[3];
-
+    // Add elements to HTML
     searchCardInnerHTML += `
     <div class="searchCard" onmousedown="pickPokemon(this)">
       <div class="search-card-left">
@@ -113,18 +113,21 @@ function removeDuplicates(array) {
 // Click on searchcard to display specific pokemon
 function pickPokemon(e) {
   let pokemonChoice = e.firstElementChild.childNodes[5].textContent;
-  getSpecificPokemon(pokemonChoice);
+  getSpecificPokemon(pokemonChoice.toLowerCase());
 }
 // Grab specific pokemon - by name
-const getSpecificPokemon = async (name) => {
-  const url = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
-  const res = await fetch(url);
-  const pokemon = await res.json();
+function getSpecificPokemon(name) {
   clearPokemon();
   clearSearchBar();
   closeModal();
-  createPokemonCard(pokemon);
-};
+  //Create pokemon card
+  for (let i = 0; i < pokemons_number; i++) {
+    // Check if names match
+    if (name === pokemonArrayObject[i].name) {
+      createPokemonCard(i);
+    }
+  }
+}
 
 // Clear pokemon cards
 function clearPokemon() {
