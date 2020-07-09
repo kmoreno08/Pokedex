@@ -23,6 +23,7 @@ function openModal() {
 // Function to close modal
 function closeModal() {
   modal.style.display = "none";
+  clearTextBox();
 }
 // User input match with pokemon search bar
 const matchList = document.getElementById("match-list");
@@ -37,18 +38,12 @@ function pokemonInfo(searchText) {
     const regex = new RegExp(`^${searchText}`, "gi");
     return poke.match(regex);
   });
-
-  console.log("before");
-  console.log(matches);
   // Show results in search bar modal
   let searchCardInnerHTML = "";
   let matchesNoDuplicates = removeDuplicates(matches);
-  console.log("After");
-  console.log(matchesNoDuplicates);
   matchesNoDuplicates.forEach((pokemonName) => {
     // Capitalize first letter
     const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
-    ///////Test////
 
     /*
     Pokemon Array -
