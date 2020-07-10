@@ -18,7 +18,6 @@ const getPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
-
   addPokemonObject(pokemon);
 };
 
@@ -54,7 +53,7 @@ function createPokemonCard(i) {
   };
 
   // Count each pokemon for poke counter
-  // poke_counter += 1;
+  poke_counter += 1;
 
   // Add each pokemon to div with class
   const pokemonEl = document.createElement("div");
@@ -96,7 +95,8 @@ function createPokemonCard(i) {
   poke_container.appendChild(pokemonEl);
   // Push name to array for search bar
   pokeNameArray.push(pokemonName);
-  // }
+  // Update pokemon Counter
+  updatePokeCounter();
 }
 
 // Count each pokemon for poke counter
