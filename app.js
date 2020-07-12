@@ -24,6 +24,10 @@ const getPokemon = async (id) => {
 function main() {
   fetchPokemons();
   setTimeout(function () {
+    console.log("runs");
+    document.getElementById("loader").style.display = "none";
+  }, 4599);
+  setTimeout(function () {
     for (let i = 0; i < pokemons_number; i++) {
       createPokemonCard(i);
     }
@@ -98,9 +102,6 @@ function createPokemonCard(i) {
   // Update pokemon Counter
   updatePokeCounter();
 }
-
-// Count each pokemon for poke counter
-// poke_counter += 1;
 
 //Update and display poke counter
 function updatePokeCounter() {

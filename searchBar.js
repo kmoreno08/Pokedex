@@ -44,7 +44,6 @@ function pokemonInfo(searchText) {
   matchesNoDuplicates.forEach((pokemonName) => {
     // Capitalize first letter
     const name = pokemonName[0].toUpperCase() + pokemonName.slice(1);
-
     /*
     Pokemon Array -
     0 - ID
